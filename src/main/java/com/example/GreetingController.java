@@ -19,7 +19,10 @@ public class GreetingController {
     }
 
     @GetMapping
-    public String main(){
+    public String main(Map<String, Object> model) {
+        model.put("url", "http://localhost:8080/greeting");
+        model.put("msg", "go to \"/greeting\"");
+
         return "main";
     }
 }
