@@ -5,6 +5,26 @@
     <title>Main page</title>
 </head>
 <body>
-<div><a href="{{url}}">{{msg}}</a> </div>
-</body>
+    <div>
+        <form method="post">
+            <input type="text" name="text" placeholder="Введите сообщение" />
+            <input type="text" name="tag" placeholder="Введите тэг" />
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+    <p>
+    <div>Список сообщений:</div>
+        <form method="post" action="filter">
+            <input type="text" name="filter" />
+            <button type="submit">Найти</button>
+        </form>
+        <p>
+        {{#messages}}
+        <div>
+        <b>{{id}}</b>
+        <span>{{text}}</span>
+        <i>{{tag}}</i>
+        </div>
+        {{/messages}}
+    </body>
 </html>
