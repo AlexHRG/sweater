@@ -2,7 +2,11 @@ package com.example.sweater.repos;
 
 import com.example.sweater.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepo extends JpaRepository<User, Long> {
+import java.util.List;
+
+public interface UserRepo extends CrudRepository<User, Long> {
     User findByUsername(String username);
+    List<User> findAll();
 }

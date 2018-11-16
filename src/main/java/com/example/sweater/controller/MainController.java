@@ -1,7 +1,9 @@
 package com.example.sweater.controller;
 
 import com.example.sweater.domain.Message;
+import com.example.sweater.domain.User;
 import com.example.sweater.repos.MessageRepo;
+import com.example.sweater.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,9 @@ public class MainController {
     @Autowired
     private MessageRepo messageRepo;
 
+    @Autowired
+    private UserRepo userRepo;
+
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
 
@@ -24,9 +29,9 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
-        Iterable<Message> messages = messageRepo.findAll();
+        Iterable<User> users = userRepo.findAll();
 
-        model.put("messages", messages);
+        model.put("users", users);
         return "main";
     }
 

@@ -6,33 +6,34 @@
 </head>
 <body>
     <div>
-        <form th:action="/logout" method="post">
+        <form action="/logout" method="post">
             <input type="submit" value="Sign Out"/>
             <input type="hidden" name="_csrf" value={{_csrf.token}} />
         </form>
     </div>
-    <div>
-        <form method="post">
-            <input type="hidden" name="_csrf" value={{_csrf.token}} />
-            <input type="text" name="text" placeholder="Введите сообщение" />
-            <input type="text" name="tag" placeholder="Введите тэг" />
-            <button type="submit">Добавить</button>
-        </form>
-    </div>
+    <!--<div>-->
+        <!--<form method="post">-->
+            <!--<input type="hidden" name="_csrf" value={{_csrf.token}} />-->
+            <!--<input type="text" name="text" placeholder="Введите сообщение" />-->
+            <!--<input type="text" name="tag" placeholder="Введите тэг" />-->
+            <!--<button type="submit">Добавить</button>-->
+        <!--</form>-->
+    <!--</div>-->
     <p>
-    <div>Список сообщений:</div>
+    <div>Список пользователей:</div>
         <form method="post" action="filter">
             <input type="hidden" name="_csrf" value={{_csrf.token}} />
             <input type="text" name="filter" />
             <button type="submit">Найти</button>
         </form>
         <p>
-        {{#messages}}
+        {{#users}}
         <div>
         <b>{{id}}</b>
-        <span>{{text}}</span>
-        <i>{{tag}}</i>
+        <span>{{username}}</span>
+            <i>{{roles}}</i>
+        <i>{{active}}</i>
         </div>
-        {{/messages}}
+        {{/users}}
     </body>
 </html>
