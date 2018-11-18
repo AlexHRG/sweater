@@ -20,12 +20,22 @@
         <!--</form>-->
     <!--</div>-->
     <p>
-    <div>Список пользователей:</div>
+    <div><label>Список пользователей:</label>
+            <br>
         <form method="post" action="filter">
+            <select name="filter">
+                <option value="ADMIN">Admin</option>
+                <option value="USER">User</option>
+                <option value="">Все</option>
+            </select>
+
+
+
             <input type="hidden" name="_csrf" value={{_csrf.token}} />
-            <input type="text" name="filter" />
-            <button type="submit">Найти</button>
+            <!--<input type="text" name="filter" />-->
+            <button type="submit">Выбрать</button>
         </form>
+
         <p>
         {{#users}}
         <div>

@@ -33,8 +33,7 @@ public class RegistrationController {
         }
 
         user.setActive(true);
-        //user.setRoles(Collections.singleton(Role.USER));
-        user.setRoles(Collections.singleton(Role.valueOf(role.toUpperCase())));
+        user.setRoles(Collections.singleton(Role.valueOf(role)));
         userRepo.save(user);
 
         return "redirect:/login";
