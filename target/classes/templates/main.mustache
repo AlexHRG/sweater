@@ -45,5 +45,24 @@
         <i>{{active}}</i>
         </div>
         {{/users}}
+
+    <p>
+
+    <div>Добавить птичку</div>
+    <form action="/addbird" method="post">
+        <div><label> Имя птички: <input type="text" name="birdName"/> </label></div>
+        <input type="hidden" name="_csrf" value={{_csrf.token}} />
+        <div><input type="submit" value="Добавить"/></div>
+    </form>
+
+    {{#message}}
+        {{message}}
+    {{/message}}
+
+    <div>Птички: </div>
+    {{#birds}}
+        <div>{{name}}</div>
+    {{/birds}}
+
     </body>
 </html>

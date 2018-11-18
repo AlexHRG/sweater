@@ -1,7 +1,9 @@
 package com.example.sweater.controller;
 
+import com.example.sweater.domain.Bird;
 import com.example.sweater.domain.Role;
 import com.example.sweater.domain.User;
+import com.example.sweater.repos.BirdRepo;
 import com.example.sweater.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.Map;
 
 @Controller
@@ -16,6 +19,9 @@ public class MainController {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private BirdRepo birdRepo;
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
@@ -26,9 +32,27 @@ public class MainController {
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<User> users = userRepo.findAll();
+        Iterable<Bird> birds = birdRepo.findAll();
 
         model.put("users", users);
+        model.put("birds", birds);
         return "main";
+    }
+
+    @PostMapping("/addbird")
+    public String addBird(@RequestParam String birdName, Map<String, Object> model) {
+        Bird birdFromDb = birdRepo.findByName(birdName);
+
+        if(birdFromDb != null) {
+            model.put("message", "Придумай новое имя!");
+            return "redirect:/main";
+        }
+
+        Bird bird = new Bird();
+        bird.setName(birdName);
+
+        birdRepo.save(bird);
+        return "redirect:/main";
     }
 
     @PostMapping("filter")
