@@ -39,22 +39,6 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/addbird")
-    public String addBird(@RequestParam String birdName, Map<String, Object> model) {
-        Bird birdFromDb = birdRepo.findByName(birdName);
-
-        if(birdFromDb != null) {
-            model.put("message", "Придумай новое имя!");
-            return "redirect:/main";
-        }
-
-        Bird bird = new Bird();
-        bird.setName(birdName);
-
-        birdRepo.save(bird);
-        return "redirect:/main";
-    }
-
     @PostMapping("filter")
     public String filter (@RequestParam String filter, Map<String, Object> model) {
         Iterable<User> filteredUsers;
